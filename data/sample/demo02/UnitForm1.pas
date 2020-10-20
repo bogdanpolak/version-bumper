@@ -1,4 +1,4 @@
-unit UnitForm1;
+﻿unit UnitForm1;
 
 interface
 
@@ -9,7 +9,7 @@ uses
 type
   TForm2 = class(TForm)
   strict private const
-    Version = '2.1';
+    Version = '1.0';
   private
     { Private declarations }
   public
