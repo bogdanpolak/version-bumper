@@ -12,6 +12,7 @@ uses
 type
   TAppConfiguration = class
   private const
+    ConfigurationFileName = 'app-config.json';
     KeySourceUnits = 'sourceUnits';
     KeyReadmeSection = 'bumpReadme';
     KeyReadmeFilePath = 'fileName';
@@ -56,7 +57,7 @@ var
   i: integer;
   jsReadmeBump: TJSONObject;
 begin
-  aJsonData := TFile.ReadAllText('app-config.json');
+  aJsonData := TFile.ReadAllText(ConfigurationFileName);
   jsObject := TJSONObject.ParseJSONValue(aJsonData) as TJSONObject;
   jsTrue := TJSONTrue.Create;
   try
