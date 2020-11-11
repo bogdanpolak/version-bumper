@@ -7,7 +7,9 @@ uses
   System.Classes,
   System.JSON,
   System.IOUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  {}
+  Processor.Utils;
 
 type
   TAppConfiguration = class
@@ -57,8 +59,15 @@ var
   i: integer;
   jsReadmeBump: TJSONObject;
 begin
+  if not FileExists(ConfigurationFileName) then
+    raise EProcessError.Create(Format('Configuration file is not exists: "%s"',
+      [ConfigurationFileName]));
   aJsonData := TFile.ReadAllText(ConfigurationFileName);
   jsObject := TJSONObject.ParseJSONValue(aJsonData) as TJSONObject;
+  if jsObject = nil then
+    raise EProcessError.Create
+      (Format('Not able to parse configuration: "%s" - not valid JSON format.',
+      [ConfigurationFileName]));
   jsTrue := TJSONTrue.Create;
   try
     // --- PAS Source ----
