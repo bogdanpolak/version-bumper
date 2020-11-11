@@ -37,7 +37,6 @@ uses
 constructor TMainApplication.Create();
 begin
   fAppConfig := TAppConfiguration.Create;
-  fAppConfig.LoadFromFile;
   fSilentMode := true;
 end;
 
@@ -149,6 +148,7 @@ procedure TMainApplication.ExecuteApplication();
 var
   aNewVersion: string;
 begin
+  fAppConfig.LoadFromFile;
   ValidateSourceConfiguration;
   aNewVersion := ExtractInputParameters;
   if fAppConfig.DoReadmeBump then
