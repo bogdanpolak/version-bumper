@@ -32,7 +32,7 @@ type
     property DoReadmeBump: boolean read FDoReadmeBump write FDoReadmeBump;
     property ReadmeFilePath: string read FReadmeFilePath write FReadmeFilePath;
     property ReadmeSearchPattern: string read FReadmeSearchPattern
-        write FReadmeSearchPattern;
+      write FReadmeSearchPattern;
   end;
 
 implementation
@@ -72,16 +72,17 @@ begin
   try
     // --- PAS Source ----
     jsValueSourceUnits := jsObject.GetValue(KeySourceUnits);
-    if jsValueSourceUnits=nil then
+    if jsValueSourceUnits = nil then
     begin
-      writeln(Format('Error! Mandatory configuration item: "%s" does not exist.',
-          [KeySourceUnits]));
+      writeln(Format
+        ('Error! Mandatory configuration item: "%s" does not exist.',
+        [KeySourceUnits]));
       Halt(2);
     end;
     if not(jsValueSourceUnits is TJSONArray) then
     begin
       writeln(Format('Error! Configuration item: "%s" is not array of strings',
-          [KeySourceUnits]));
+        [KeySourceUnits]));
       Halt(2);
     end;
     jsSourceUnitsArray := jsValueSourceUnits as TJSONArray;
@@ -98,7 +99,8 @@ begin
     begin
       jsReadmeBump := jsObject.GetValue(KeyReadmeSection) as TJSONObject;
       ReadmeFilePath := jsReadmeBump.GetValue(KeyReadmeFilePath).Value;
-      ReadmeSearchPattern := jsReadmeBump.GetValue(KeyReadmeSearchPattern).Value;
+      ReadmeSearchPattern := jsReadmeBump.GetValue
+        (KeyReadmeSearchPattern).Value;
     end;
   finally
     jsObject.Free;
